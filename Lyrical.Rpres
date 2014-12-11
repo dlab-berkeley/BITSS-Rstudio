@@ -60,7 +60,7 @@ freq.counts <- row_sums(lyrics.dtm[freq.terms,])
 Word Cloud!
 ===========
 
-```{r}
+```{r, fig.align='center', fig.fig.cap='Words in Lyrics'}
 library(wordcloud)
 wordcloud(names(freq.counts), freq.counts)
 ```
