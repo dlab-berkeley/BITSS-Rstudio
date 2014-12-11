@@ -1,0 +1,66 @@
+Computational investigations of Dav's favorite pop
+==================================================
+author: Dav Clark
+date: Dec 10, 2014
+
+About this presentation
+=======================
+
+Everything in this slide is executed dynamically when I generate the slides. So, you can see exactly what code was used to generate *everything*. Except this (why?):
+```{r, eval=FALSE}
+source('install-packages.R')
+```
+
+The formatting is handled by [Rmarkdown](http://rmarkdown.rstudio.com/).
+
+The Data
+========
+
+I downloaded some song lyrics (usng python)
+
+- Jay Z
+- Billy Joel
+- Miley Cyrus
+- Macklemmore
+
+They are in text files in the `lyrics` directory. And I wrote a script to load them in and clean them up:
+
+```{r}
+source('load-data.R')
+```
+
+What's in the corpus?
+=====================
+Let's check the first two lines of the first document. We'll need to load the tm package here to make the objects fully functional.
+```{r}
+library(tm)
+lyrics.corpus[[1]][1:7]
+```
+
+Compute term frequencies!
+=========================
+
+```{r}
+lyrics.dtm <- TermDocumentMatrix(lyrics.corpus, control=list(minDocFreq = 2))
+print(lyrics.dtm)
+```
+
+That's a lot of terms...
+
+Grab the most frequent terms
+============================
+
+```{r}
+library(slam)
+freq.terms <- findFreqTerms(lyrics.dtm, lowfreq=100)
+# Note - this is the row_sums method from slam!
+freq.counts <- row_sums(lyrics.dtm[freq.terms,])
+```
+
+Word Cloud!
+===========
+
+```{r}
+library(wordcloud)
+wordcloud(names(freq.counts), freq.counts)
+```
