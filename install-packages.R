@@ -1,2 +1,2 @@
-install.packages(c("tm", "RTextTools", "topicmodels", "wordcloud", "SnowballC"))
+install.packages(c("knitr", "tm", "RTextTools", "topicmodels", "wordcloud", "SnowballC"))
 
