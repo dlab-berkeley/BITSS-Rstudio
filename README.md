@@ -1,6 +1,8 @@
 BITSS-Rstudio
 =============
 
+The official home for this is https://github.com/dlab-berkeley/BITSS-Rstudio
+
 This repository was put together using [RStudio](http://www.rstudio.com/). 
 Open the Rproj file, and you should be able to follow along with the slides in the Rpres file!
 
